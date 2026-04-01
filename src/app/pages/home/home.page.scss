@@ -1,0 +1,469 @@
+.home-content {
+  --background: var(--tt-bg-secondary);
+  --padding-bottom: 96px;
+  padding: 0;
+}
+
+.home-header {
+  padding: 20px;
+  color: white;
+  border-radius: 0 0 24px 24px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.greeting {
+  p {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 4px 0 0;
+    color: white;
+  }
+}
+
+.notification-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  ion-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #ff6b6b;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 20px;
+  }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 16px;
+
+  ion-icon {
+    font-size: 16px;
+  }
+
+  span {
+    flex: 1;
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--tt-text-light);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  ion-icon {
+    color: var(--tt-primary);
+    font-size: 18px;
+  }
+}
+
+.flash-deal {
+  margin: 20px 16px;
+
+  .deal-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #6b5bff 0%, #4d96ff 100%);
+    padding: 20px;
+    border-radius: 16px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .deal-badge {
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background-color: #ffd60a;
+    color: #2c2c2c;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+
+  .deal-offer {
+    flex: 1;
+    padding-top: 8px;
+
+    h3 {
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1;
+    }
+
+    p {
+      margin: 8px 0 0;
+      font-size: 14px;
+      opacity: 0.95;
+
+      &.deal-code {
+        font-size: 11px;
+        font-weight: 600;
+        opacity: 0.8;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  .deal-gift {
+    min-width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+}
+
+.categories-section {
+  padding: 20px 16px 0;
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+
+  .categories-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 8px;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--tt-border);
+      border-radius: 2px;
+    }
+  }
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  border: 2px solid var(--tt-border);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  min-width: 76px;
+
+  ion-icon {
+    font-size: 24px;
+    color: var(--tt-primary);
+  }
+
+  &.active {
+    background: var(--tt-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(255, 107, 53, 0.22);
+
+    ion-icon {
+      color: white;
+    }
+  }
+
+  &:hover:not(.active) {
+    border-color: var(--tt-primary);
+  }
+}
+
+.section {
+  padding: 20px 16px;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+
+      ion-icon {
+        color: var(--tt-primary);
+        font-size: 18px;
+      }
+    }
+
+    .see-all {
+      background: none;
+      border: none;
+      color: var(--tt-primary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
+
+.featured-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--tt-border);
+    border-radius: 2px;
+  }
+}
+
+.food-card {
+  flex: 0 0 168px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  scroll-snap-align: start;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  }
+
+  .food-image {
+    position: relative;
+    width: 100%;
+    height: 148px;
+    background: var(--tt-bg-secondary);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hot-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: #ff6b35;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+  }
+
+  .food-info {
+    padding: 12px;
+
+    h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--tt-text-primary);
+      line-height: 1.3;
+    }
+
+    .restaurant-name {
+      font-size: 12px;
+      color: var(--tt-text-secondary);
+      margin: 0 0 10px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      .price {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--tt-primary);
+      }
+
+      .food-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        color: #c98900;
+        font-weight: 600;
+
+        ion-icon {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+.featured-empty {
+  padding: 18px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--tt-text-secondary);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.restaurants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.restaurant-card {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .restaurant-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--tt-bg-secondary);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .restaurant-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: var(--tt-text-primary);
+    }
+
+    .restaurant-meta {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 6px;
+      font-size: 12px;
+
+      .rating {
+        color: #c98900;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+
+        ion-icon {
+          font-size: 13px;
+        }
+      }
+
+      .reviews {
+        color: var(--tt-text-light);
+      }
+    }
+
+    .restaurant-details {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--tt-text-secondary);
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+﻿<ion-content class="about-page">
+  <section class="about-hero">
+    <button type="button" class="back-button" (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+
+    <div class="brand-lockup">
+      <div class="logo-box">
+        <img src="assets/icon/tastetrack-logo.svg" alt="TasteTrack logo" />
+      </div>
+
+      <div class="brand-copy">
+        <h1>TasteTrack</h1>
+        <p class="tagline">Order. Track. Enjoy.</p>
+      </div>
+    </div>
+
+    <p class="intro">
+      Connecting food lovers with the best restaurants in their city since 2020.
+    </p>
+  </section>
+
+  <div class="about-shell">
+    <section class="stats-grid">
+      <article class="stat-card" *ngFor="let stat of stats" [class.orange]="stat.tone === 'orange'" [class.violet]="stat.tone === 'violet'" [class.gold]="stat.tone === 'gold'" [class.teal]="stat.tone === 'teal'">
+        <span class="stat-icon">
+          <ion-icon [name]="stat.icon"></ion-icon>
+        </span>
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <ion-icon name="compass-outline"></ion-icon>
+        <h2>Our Mission</h2>
+      </div>
+
+      <p>
+        At TasteTrack, we believe that great food should be accessible to everyone. We are building a fast,
+        reliable, and user-friendly food delivery platform that connects food lovers with the best local
+        restaurants while helping neighborhood businesses thrive.
+      </p>
+    </section>
+
+    <section class="panel values-panel">
+      <div class="panel-title">
+        <ion-icon name="bulb-outline"></ion-icon>
+        <h2>Our Values</h2>
+      </div>
+
+      <div class="value-row" *ngFor="let value of values">
+        <span class="value-icon">
+          <ion-icon [name]="value.icon"></ion-icon>
+        </span>
+        <div>
+          <strong>{{ value.title }}</strong>
+          <p>{{ value.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <h2>Reach Us</h2>
+      </div>
+
+      <button type="button" class="contact-row" *ngFor="let link of contactLinks" (click)="link.action()">
+        <span class="contact-icon">
+          <ion-icon [name]="link.icon"></ion-icon>
+        </span>
+        <span>{{ link.label }}</span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <div class="legal-actions">
+        <button type="button" class="ghost-button" (click)="openTerms()">Terms</button>
+        <button type="button" class="ghost-button" (click)="openPrivacy()">Privacy</button>
+      </div>
+    </section>
+
+    <p class="footer-note">TasteTrack v2.4.0</p>
+  </div>
+</ion-content>

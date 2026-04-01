@@ -1,0 +1,122 @@
+<ion-content class="home-content">
+  <div class="home-header gradient-primary">
+    <div class="header-top">
+      <div class="greeting">
+        <p>GOOD MORNING</p>
+        <h2>{{ user?.name || 'Guest' }}</h2>
+      </div>
+      <button class="notification-btn" (click)="goToNotifications()" aria-label="Open notifications">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge *ngIf="unreadNotifications > 0">{{ unreadNotifications }}</ion-badge>
+      </button>
+    </div>
+
+    <div class="location">
+      <ion-icon name="location-sharp"></ion-icon>
+      <span>123 Main St, Apt 4B, New York, NY 10001</span>
+    </div>
+
+    <div class="search-bar" (click)="goToSearch()">
+      <ion-icon name="search"></ion-icon>
+      <span>Search for food, restaurants...</span>
+    </div>
+  </div>
+
+  <div class="flash-deal">
+    <div class="deal-content">
+      <div class="deal-badge">FLASH DEAL</div>
+      <div class="deal-offer">
+        <h3>30% OFF</h3>
+        <p>First Order!</p>
+        <p class="deal-code">Use code: TASTE30</p>
+      </div>
+      <div class="deal-gift">NEW</div>
+    </div>
+  </div>
+
+  <div class="categories-section">
+    <h3>Categories</h3>
+    <div class="categories-scroll">
+      <button
+        *ngFor="let category of categories"
+        class="category-btn"
+        [class.active]="selectedCategory === category.id"
+        (click)="selectCategory(category.id)"
+      >
+        <ion-icon [name]="category.icon"></ion-icon>
+        <span>{{ category.label }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">
+        <ion-icon name="flame"></ion-icon>
+        <span>{{ getPopularTitle() }}</span>
+      </h3>
+      <button class="see-all" (click)="goToMenu()">See all</button>
+    </div>
+
+    <div *ngIf="featuredFoods.length > 0; else noFeaturedFoods" class="featured-strip">
+      <article *ngFor="let food of featuredFoods" class="food-card" (click)="goToFoodDetail(food.id)">
+        <div class="food-image">
+          <img [src]="food.image" [alt]="food.name" />
+          <div class="hot-badge">HOT</div>
+        </div>
+        <div class="food-info">
+          <h4>{{ food.name }}</h4>
+          <p class="restaurant-name">{{ food.restaurantName }}</p>
+          <div class="price-row">
+            <span class="price">${{ food.price.toFixed(2) }}</span>
+            <span class="food-rating">
+              <ion-icon name="star"></ion-icon>
+              {{ food.rating }}
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <ng-template #noFeaturedFoods>
+    <div class="featured-empty">
+      <p>No featured items for this category yet.</p>
+    </div>
+  </ng-template>
+
+  <div class="section">
+    <div class="section-header">
+      <h3 class="section-title">
+        <ion-icon name="storefront-outline"></ion-icon>
+        <span>Top Restaurants</span>
+      </h3>
+      <button class="see-all" (click)="goToMenu()">See all</button>
+    </div>
+
+    <div class="restaurants-list">
+      <div *ngFor="let restaurant of restaurants" class="restaurant-card">
+        <div class="restaurant-image">
+          <img [src]="restaurant.image" [alt]="restaurant.name" />
+        </div>
+        <div class="restaurant-info">
+          <h4>{{ restaurant.name }}</h4>
+          <div class="restaurant-meta">
+            <span class="rating">
+              <ion-icon name="star"></ion-icon>
+              {{ restaurant.rating }}
+            </span>
+            <span class="reviews">({{ restaurant.reviews }} reviews)</span>
+          </div>
+          <div class="restaurant-details">
+            <span>{{ restaurant.deliveryTime }} min</span>
+            <span>Min: ${{ restaurant.minOrder }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 20px;"></div>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>

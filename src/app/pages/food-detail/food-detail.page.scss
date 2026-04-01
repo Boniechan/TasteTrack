@@ -1,0 +1,241 @@
+.food-detail-content {
+  --background: var(--tt-bg-primary);
+  padding: 0;
+}
+
+.food-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: var(--tt-bg-secondary);
+  
+  .food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .back-btn,
+  .favorite-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 12px;
+    color: var(--tt-primary);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: white;
+      transform: scale(1.1);
+    }
+  }
+  
+  .back-btn {
+    top: 16px;
+    left: 16px;
+  }
+  
+  .favorite-btn {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+.food-details-container {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--tt-text-primary);
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    
+    .stars {
+      color: #FFC93C;
+      font-weight: 600;
+    }
+    
+    .count {
+      color: var(--tt-text-light);
+    }
+  }
+  
+  .price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--tt-primary);
+  }
+}
+
+.description {
+  font-size: 14px;
+  color: var(--tt-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.food-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background-color: var(--tt-bg-secondary);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--tt-text-primary);
+    
+    &.spicy {
+      background-color: rgba(255, 107, 107, 0.1);
+      color: #FF6B6B;
+    }
+  }
+}
+
+.restaurant-info {
+  padding: 16px;
+  background-color: var(--tt-bg-secondary);
+  border-radius: 12px;
+  
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--tt-text-primary);
+  }
+  
+  p {
+    font-size: 12px;
+    color: var(--tt-text-secondary);
+    margin: 0;
+  }
+}
+
+.special-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tt-text-primary);
+  }
+  
+  textarea {
+    padding: 12px;
+    border: 1px solid var(--tt-border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--tt-text-primary);
+    background-color: var(--tt-bg-secondary);
+    resize: none;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--tt-primary);
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+    
+    &::placeholder {
+      color: var(--tt-text-light);
+    }
+  }
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: var(--tt-bg-secondary);
+  padding: 16px;
+  border-radius: 12px;
+  
+  button {
+    width: 44px;
+    height: 44px;
+    background: var(--tt-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &:hover:not(:disabled) {
+      transform: scale(1.1);
+    }
+    
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+  }
+  
+  span {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+    color: var(--tt-text-primary);
+  }
+}
+
+.add-to-cart-btn {
+  padding: 16px 20px;
+  background: var(--tt-gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}

@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="92" y1="60" x2="418" y2="452" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9300"/>
+      <stop offset="1" stop-color="#FF4A24"/>
+    </linearGradient>
+    <linearGradient id="utensilGradient" x1="89" y1="95" x2="423" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7E3FF"/>
+      <stop offset="1" stop-color="#9D99E8"/>
+    </linearGradient>
+    <radialGradient id="dishGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 248) rotate(90) scale(144)">
+      <stop stop-color="#ECE9FF"/>
+      <stop offset="1" stop-color="#CFC8FF"/>
+    </radialGradient>
+    <filter id="softShadow" x="54" y="54" width="404" height="404" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="14"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.470588 0 0 0 0 0.403922 0 0 0 0 0.839216 0 0 0 0.24 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+    <filter id="dishInset" x="136" y="128" width="240" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="8"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.623529 0 0 0 0 0.584314 0 0 0 0 0.92549 0 0 0 0.28 0"/>
+      <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_1"/>
+    </filter>
+  </defs>
+
+  <rect x="30" y="30" width="452" height="452" rx="96" fill="url(#bgGradient)"/>
+
+  <g filter="url(#softShadow)">
+    <circle cx="256" cy="256" r="156" fill="white"/>
+    <circle cx="256" cy="256" r="126" stroke="#D8D0FF" stroke-width="22" fill="url(#dishGradient)"/>
+    <g filter="url(#dishInset)">
+      <circle cx="256" cy="246" r="88" fill="#DED9FF"/>
+    </g>
+  </g>
+
+  <g fill="url(#utensilGradient)">
+    <rect x="108" y="146" width="28" height="230" rx="14"/>
+    <rect x="94" y="100" width="14" height="72" rx="7"/>
+    <rect x="116" y="100" width="14" height="72" rx="7"/>
+    <rect x="138" y="100" width="14" height="72" rx="7"/>
+    <path d="M380 104C399.33 104 415 119.67 415 139V171C415 184.25 407.95 195.86 397.4 202.18L397 202.42V376C397 383.73 390.73 390 383 390H379C371.27 390 365 383.73 365 376V104H380Z"/>
+  </g>
+</svg>

@@ -1,0 +1,162 @@
+﻿<ion-content class="profile-page">
+  <div class="profile-shell">
+    <section class="hero">
+      <div class="hero-top">
+        <h1>My Profile</h1>
+        <button type="button" class="settings-button" (click)="goToSettings()">
+          <ion-icon name="settings-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <section class="profile-card">
+      <div class="identity-row">
+        <div class="avatar-wrap">
+          <div class="avatar">{{ avatarInitial }}</div>
+          <button type="button" class="avatar-edit" (click)="editProfile()">
+            <ion-icon name="create-outline"></ion-icon>
+          </button>
+        </div>
+
+        <div class="identity-copy">
+          <h2>{{ profile.name }}</h2>
+          <p>{{ profile.email }}</p>
+          <span class="member-badge">
+            <ion-icon name="star"></ion-icon>
+            {{ profile.memberLabel }}
+          </span>
+        </div>
+      </div>
+
+      <button type="button" class="edit-button" (click)="editProfile()">
+        Edit Profile
+      </button>
+
+      <div class="stats-panel">
+        <div class="stat-item">
+          <strong>{{ profile.orders }}</strong>
+          <span>Orders</span>
+        </div>
+        <div class="stat-item">
+          <strong>{{ profile.reviews }}</strong>
+          <span>Reviews</span>
+        </div>
+        <div class="stat-item">
+          <strong>{{ profile.tastePoints }}</strong>
+          <span>TastePoints</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Contact Info</h3>
+
+      <div class="contact-row">
+        <span class="icon-chip mail">
+          <ion-icon name="mail-outline"></ion-icon>
+        </span>
+        <p>{{ profile.email }}</p>
+      </div>
+
+      <div class="contact-row">
+        <span class="icon-chip phone">
+          <ion-icon name="call-outline"></ion-icon>
+        </span>
+        <p>{{ profile.phone }}</p>
+      </div>
+
+      <div class="contact-row">
+        <span class="icon-chip location">
+          <ion-icon name="location-outline"></ion-icon>
+        </span>
+        <p>{{ profile.address }}</p>
+      </div>
+    </section>
+
+    <section class="card menu-card">
+      <button type="button" class="menu-row" (click)="goToOrderHistory()">
+        <span class="icon-chip orders">
+          <ion-icon name="receipt-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>My Orders</strong>
+          <small>View order history</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToFavorites()">
+        <span class="icon-chip favorites">
+          <ion-icon name="heart-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>Favorites</strong>
+          <small>Your favorite items</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToAddresses()">
+        <span class="icon-chip addresses">
+          <ion-icon name="navigate-circle-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>Addresses</strong>
+          <small>Manage delivery addresses</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToNotifications()">
+        <span class="icon-chip notifications">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>Notifications</strong>
+          <small>Alerts and updates</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToLoyalty()">
+        <span class="icon-chip loyalty">
+          <ion-icon name="gift-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>Loyalty Points</strong>
+          <small>{{ profile.tastePoints }} TastePoints</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToAbout()">
+        <span class="icon-chip about">
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>About TasteTrack</strong>
+          <small>Our story and team</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+
+      <button type="button" class="menu-row" (click)="goToSettings()">
+        <span class="icon-chip settings">
+          <ion-icon name="options-outline"></ion-icon>
+        </span>
+        <span class="copy">
+          <strong>Settings</strong>
+          <small>App preferences</small>
+        </span>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+      </button>
+    </section>
+
+    <button type="button" class="logout-button" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      Sign Out
+    </button>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>

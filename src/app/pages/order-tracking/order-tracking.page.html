@@ -1,0 +1,127 @@
+﻿<ion-content class="tracking-content" *ngIf="order as currentOrder">
+  <div class="tracking-header gradient-primary">
+    <button class="back-btn" (click)="goBack()" aria-label="Go back">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
+    <div class="header-copy">
+      <h1>{{ headerTitle }}</h1>
+      <p>Order #{{ currentOrder.id }}</p>
+    </div>
+  </div>
+
+  <div class="tracking-wrapper">
+    <section *ngIf="!isDelivered; else deliveredHero" class="map-section">
+      <div class="map-placeholder">
+        <div class="map-grid"></div>
+        <div class="route-line"></div>
+        <div class="restaurant-marker">{{ currentOrder.restaurantName }}</div>
+        <div class="delivery-marker">
+          <ion-icon name="bicycle"></ion-icon>
+        </div>
+        <div class="location-pill">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          Your Location
+        </div>
+        <div class="eta-pill">
+          <small>{{ etaLabel }}</small>
+          <strong>{{ etaCountdown }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <ng-template #deliveredHero>
+      <section class="delivered-hero">
+        <div class="hero-badge">
+          <ion-icon name="trophy-outline"></ion-icon>
+          Delivered Successfully
+        </div>
+        <h2>Your order has arrived</h2>
+        <p>{{ currentOrder.restaurantName }} made it to your door. Enjoy your meal.</p>
+      </section>
+    </ng-template>
+
+    <section class="driver-info-card">
+      <div class="driver-avatar">
+        <span>R</span>
+      </div>
+      <div class="driver-details">
+        <h3>{{ currentOrder.deliveryAgent.name }}</h3>
+        <p><ion-icon name="star"></ion-icon> {{ currentOrder.deliveryAgent.rating }} • {{ currentOrder.deliveryAgent.totalDeliveries }} deliveries</p>
+        <p class="vehicle"><ion-icon name="navigate-circle"></ion-icon> {{ driverVehicle }}</p>
+      </div>
+      <div class="driver-actions" *ngIf="!isDelivered">
+        <button class="action-btn call-btn" (click)="callDriver()" aria-label="Call driver">
+          <ion-icon name="call-outline"></ion-icon>
+        </button>
+        <button class="action-btn chat-btn" (click)="chatDriver()" aria-label="Chat driver">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <section class="progress-section">
+      <div class="section-head">
+        <h3>{{ progressCardTitle }}</h3>
+        <span class="status-chip" [class.delivered]="isDelivered">{{ statusChipText }}</span>
+      </div>
+
+      <div class="timeline">
+        <div
+          *ngFor="let step of timelineSteps; let last = last"
+          class="timeline-item"
+          [class.completed]="isStatusPassed(step.id)"
+          [class.current]="orderStatus === step.id"
+          [class.pending]="!isStatusPassed(step.id)"
+        >
+          <div class="timeline-marker">
+            <ion-icon *ngIf="isStatusPassed(step.id)" [name]="step.icon"></ion-icon>
+            <span *ngIf="!isStatusPassed(step.id)" class="hollow"></span>
+          </div>
+          <div class="timeline-content">
+            <h4>{{ step.title }}</h4>
+            <p>{{ step.description }}</p>
+            <small>{{ step.time }}</small>
+          </div>
+          <div *ngIf="!last" class="timeline-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-section">
+      <h3><ion-icon name="bag-handle"></ion-icon> Order Details</h3>
+      <div class="details-grid">
+        <div class="details-row">
+          <span>Restaurant</span>
+          <strong>{{ currentOrder.restaurantName }}</strong>
+        </div>
+        <div class="details-row">
+          <span>Order ID</span>
+          <strong>#{{ currentOrder.id }}</strong>
+        </div>
+        <div class="details-row">
+          <span>Total Paid</span>
+          <strong>${{ orderTotal.toFixed(2) }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="isDelivered" class="rating-section">
+      <div class="rating-header">
+        <div class="celebration">Great job</div>
+        <h3>Order Delivered!</h3>
+        <p>How was your experience?</p>
+      </div>
+
+      <div class="rating-stars">
+        <button *ngFor="let starNumber of [1, 2, 3, 4, 5]" class="star-btn" (click)="submitRating(starNumber)">
+          <ion-icon [name]="rating >= starNumber ? 'star' : 'star-outline'"></ion-icon>
+        </button>
+      </div>
+
+      <button *ngIf="rating > 0" class="submit-review-btn" (click)="submitReview()">
+        Submit Review
+      </button>
+    </section>
+  </div>
+</ion-content>

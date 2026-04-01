@@ -1,0 +1,513 @@
+﻿.tracking-content {
+  --background: #fff7f1;
+}
+
+.tracking-header {
+  padding: 18px 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 18px;
+  }
+}
+
+.header-copy {
+  h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.tracking-wrapper {
+  padding-bottom: 28px;
+}
+
+.map-section {
+  margin-top: -2px;
+}
+
+.map-placeholder {
+  position: relative;
+  height: 198px;
+  overflow: hidden;
+  background:
+    linear-gradient(#2c3850 1px, transparent 1px),
+    linear-gradient(90deg, #2c3850 1px, transparent 1px),
+    #202c3f;
+  background-size: 48px 48px;
+}
+
+.route-line {
+  position: absolute;
+  left: 66px;
+  top: 124px;
+  width: 176px;
+  border-top: 3px dashed #ff8955;
+  transform: rotate(-18deg);
+  transform-origin: left center;
+}
+
+.restaurant-marker,
+.location-pill,
+.eta-pill,
+.delivery-marker {
+  position: absolute;
+}
+
+.restaurant-marker {
+  left: 52px;
+  bottom: 28px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--tt-gradient);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.28);
+}
+
+.delivery-marker {
+  left: 181px;
+  top: 84px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #6d5dfc 0%, #5344e2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(83, 68, 226, 0.4);
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+.location-pill {
+  top: 16px;
+  right: 16px;
+  min-height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #13a89e;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eta-pill {
+  right: 16px;
+  bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(7, 10, 18, 0.86);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  small {
+    font-size: 11px;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  strong {
+    font-size: 1.9rem;
+    line-height: 1;
+    margin-top: 4px;
+  }
+}
+
+.delivered-hero {
+  margin: 16px 14px 0;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #1fd39a 0%, #12a56d 100%);
+  color: white;
+  box-shadow: 0 16px 30px rgba(18, 165, 109, 0.22);
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin: 16px 0 8px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.5;
+  }
+}
+
+.driver-info-card,
+.progress-section,
+.details-section,
+.rating-section {
+  margin: 14px 14px 0;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(68, 44, 20, 0.08);
+}
+
+.driver-info-card {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.driver-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--tt-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+
+  span {
+    transform: translateY(-1px);
+  }
+}
+
+.driver-details {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #211629;
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #8f8696;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      font-size: 13px;
+      color: var(--tt-primary);
+    }
+  }
+
+  .vehicle {
+    margin-top: 4px;
+  }
+}
+
+.driver-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+.call-btn {
+  background: #fff3ed;
+  color: var(--tt-primary);
+}
+
+.chat-btn {
+  background: #f1efff;
+  color: #6d5dfc;
+}
+
+.progress-section {
+  padding: 18px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #211629;
+  }
+}
+
+.status-chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fff1e8;
+  color: var(--tt-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+
+  &.delivered {
+    background: #e8fbf2;
+    color: #12a56d;
+  }
+}
+
+.timeline {
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  padding: 10px 0 10px 2px;
+
+  &.pending {
+    .timeline-content {
+      h4,
+      p,
+      small {
+        color: #b4acb8;
+      }
+    }
+  }
+}
+
+.timeline-marker {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f7f1ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  ion-icon {
+    font-size: 18px;
+  }
+}
+
+.timeline-item.completed .timeline-marker {
+  background: var(--tt-gradient);
+  color: white;
+}
+
+.timeline-item.current .timeline-marker {
+  box-shadow: 0 0 0 6px rgba(255, 107, 53, 0.12);
+}
+
+.hollow {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid #8f8696;
+  background: white;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 19px;
+  top: 46px;
+  width: 2px;
+  height: calc(100% - 8px);
+  background: linear-gradient(180deg, #ff6b35 0%, #ffd5c5 100%);
+}
+
+.timeline-item.pending .timeline-line {
+  background: #efe6df;
+}
+
+.timeline-content {
+  h4 {
+    margin: 0 0 4px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #211629;
+  }
+
+  p {
+    margin: 0;
+    color: #8f8696;
+    line-height: 1.45;
+  }
+
+  small {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--tt-primary);
+    font-weight: 700;
+  }
+}
+
+.details-section {
+  padding: 18px;
+
+  h3 {
+    margin: 0 0 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #211629;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    ion-icon {
+      color: var(--tt-primary);
+    }
+  }
+}
+
+.details-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 15px;
+
+  span {
+    color: #8f8696;
+  }
+
+  strong {
+    color: #211629;
+    text-align: right;
+  }
+}
+
+.rating-section {
+  padding: 18px;
+  background: linear-gradient(180deg, #ffd95f 0%, #ffbf1a 100%);
+}
+
+.rating-header {
+  text-align: center;
+
+  .celebration {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.24);
+    font-size: 12px;
+    font-weight: 700;
+    color: #7a4b00;
+  }
+
+  h3 {
+    margin: 14px 0 6px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #211629;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(33, 22, 41, 0.72);
+  }
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.star-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.24);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+.submit-review-btn {
+  width: 100%;
+  min-height: 46px;
+  border: none;
+  border-radius: 14px;
+  margin-top: 18px;
+  background: #211629;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}

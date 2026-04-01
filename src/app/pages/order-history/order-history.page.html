@@ -1,0 +1,86 @@
+<ion-content class="order-history-content">
+  <div class="order-history-header gradient-primary">
+    <div class="header-copy">
+      <h1>My Orders</h1>
+      <ion-icon name="bag-handle"></ion-icon>
+    </div>
+
+    <div class="tabs-container">
+      <button [class.active]="selectedTab === 'all'" (click)="selectTab('all')" class="tab-btn">All</button>
+      <button [class.active]="selectedTab === 'active'" (click)="selectTab('active')" class="tab-btn">Active</button>
+      <button [class.active]="selectedTab === 'past'" (click)="selectTab('past')" class="tab-btn">Past</button>
+    </div>
+  </div>
+
+  <div class="orders-container">
+    <ng-container *ngIf="filteredOrders.length > 0; else noOrders">
+      <article *ngFor="let order of filteredOrders" class="order-card">
+        <div class="order-card-header">
+          <div class="restaurant-section">
+            <h3>{{ order.restaurantName }}</h3>
+            <p class="order-id">{{ order.id }} • {{ order.date }}</p>
+          </div>
+          <span class="status-badge" [class]="'status-' + order.status">
+            <ion-icon [name]="getStatusIcon(order.status)"></ion-icon>
+            {{ getStatusLabel(order.status) }}
+          </span>
+        </div>
+
+        <div class="order-items">
+          <div *ngFor="let item of order.items" class="order-item-row">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="item.name" (error)="handleImageError($event, item.name)" />
+            </div>
+            <div class="item-copy">
+              <h4>{{ item.name }}</h4>
+              <p>×{{ item.quantity }} • {{ getItemPriceLabel(item) }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-card-footer">
+          <div class="total-group">
+            <span class="total-label">Total Paid</span>
+            <strong>${{ order.total.toFixed(2) }}</strong>
+          </div>
+
+          <div class="order-actions">
+            <button
+              *ngIf="order.status === 'delivered'"
+              class="action-btn outline-btn"
+              (click)="reorder(order.id)"
+            >
+              <ion-icon name="refresh-outline"></ion-icon>
+              Reorder
+            </button>
+            <button
+              *ngIf="order.status === 'delivered'"
+              class="action-btn ghost-btn"
+              (click)="rateOrder(order.id)"
+            >
+              <ion-icon name="star-outline"></ion-icon>
+              Rate
+            </button>
+            <button
+              *ngIf="order.status !== 'delivered'"
+              class="action-btn solid-btn"
+              (click)="trackOrder(order.id)"
+            >
+              <ion-icon name="location-outline"></ion-icon>
+              {{ getTrackButtonLabel(order.status) }}
+            </button>
+          </div>
+        </div>
+      </article>
+    </ng-container>
+
+    <ng-template #noOrders>
+      <div class="empty-orders">
+        <ion-icon name="cube-outline"></ion-icon>
+        <h3>No {{ selectedTab }} orders</h3>
+        <p>Your recent orders will show up here.</p>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>

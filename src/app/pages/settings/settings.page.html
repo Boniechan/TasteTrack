@@ -1,0 +1,245 @@
+﻿<ion-content class="settings-page">
+  <div class="settings-shell">
+    <header class="settings-hero">
+      <button type="button" class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+      <div class="hero-copy">
+        <h1>Settings</h1>
+        <p>App preferences</p>
+      </div>
+    </header>
+
+    <section class="settings-group">
+      <div class="section-heading">
+        <ion-icon name="color-palette-outline"></ion-icon>
+        <h2>Appearance</h2>
+      </div>
+
+      <div class="settings-panel">
+        <div class="setting-row">
+          <div class="setting-main">
+            <span class="icon-wrap appearance">
+              <ion-icon name="moon-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Dark Mode</strong>
+              <small>{{ themeDescription }}</small>
+            </div>
+          </div>
+
+          <label class="switch" aria-label="Toggle dark mode">
+            <input type="checkbox" [checked]="darkMode" (change)="toggleDarkMode($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <div class="section-heading">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <h2>Notifications</h2>
+      </div>
+
+      <div class="settings-panel">
+        <div class="setting-row">
+          <div class="setting-main">
+            <span class="icon-wrap notifications">
+              <ion-icon name="paper-plane-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Push Notifications</strong>
+              <small>Receive push alerts</small>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle push notifications">
+            <input type="checkbox" [checked]="pushNotifications" (change)="togglePush($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-main">
+            <span class="icon-wrap notifications">
+              <ion-icon name="receipt-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Order Updates</strong>
+              <small>Track your order status</small>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle order updates">
+            <input type="checkbox" [checked]="orderUpdates" (change)="toggleOrderUpdates($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-main">
+            <span class="icon-wrap notifications">
+              <ion-icon name="pricetag-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Promotions and Deals</strong>
+              <small>Exclusive offers and discounts</small>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle promotions">
+            <input type="checkbox" [checked]="promotions" (change)="togglePromotions($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row no-border">
+          <div class="setting-main">
+            <span class="icon-wrap notifications">
+              <ion-icon name="volume-high-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Sound Alerts</strong>
+              <small>Play sounds for notifications</small>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle sound alerts">
+            <input type="checkbox" [checked]="soundAlerts" (change)="toggleSound($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <div class="section-heading">
+        <ion-icon name="language-outline"></ion-icon>
+        <h2>Language</h2>
+      </div>
+
+      <div class="settings-panel language-panel">
+        <button
+          *ngFor="let option of languageOptions"
+          type="button"
+          class="language-pill"
+          [class.active]="language === option.toLowerCase()"
+          (click)="setLanguage(option)"
+        >
+          {{ option }}
+        </button>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <div class="section-heading">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <h2>Security</h2>
+      </div>
+
+      <div class="settings-panel">
+        <div class="setting-row">
+          <div class="setting-main">
+            <span class="icon-wrap security">
+              <ion-icon name="finger-print-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Biometric Login</strong>
+              <small>Use Face ID or Fingerprint</small>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle biometric login">
+            <input type="checkbox" [checked]="biometric" (change)="toggleBiometric($event)" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button type="button" class="setting-row action-row no-border" (click)="changePassword()">
+          <div class="setting-main">
+            <span class="icon-wrap security">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Change Password</strong>
+              <small>Update your password</small>
+            </div>
+          </div>
+          <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <div class="section-heading">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <h2>Support and Legal</h2>
+      </div>
+
+      <div class="settings-panel">
+        <button type="button" class="setting-row action-row" (click)="openHelp()">
+          <div class="setting-main">
+            <span class="icon-wrap support orange">
+              <ion-icon name="help-circle-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Help Center</strong>
+              <small>FAQs and guides</small>
+            </div>
+          </div>
+          <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <button type="button" class="setting-row action-row" (click)="rateApp()">
+          <div class="setting-main">
+            <span class="icon-wrap support gold">
+              <ion-icon name="star-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Rate the App</strong>
+              <small>Love TasteTrack? Let us know.</small>
+            </div>
+          </div>
+          <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <button type="button" class="setting-row action-row" (click)="viewTerms()">
+          <div class="setting-main">
+            <span class="icon-wrap support purple">
+              <ion-icon name="document-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Terms of Service</strong>
+              <small>Read our terms</small>
+            </div>
+          </div>
+          <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        </button>
+
+        <button type="button" class="setting-row action-row no-border" (click)="viewPrivacy()">
+          <div class="setting-main">
+            <span class="icon-wrap support gray">
+              <ion-icon name="shield-outline"></ion-icon>
+            </span>
+            <div class="setting-copy">
+              <strong>Privacy Policy</strong>
+              <small>How we handle your data</small>
+            </div>
+          </div>
+          <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <button type="button" class="danger-panel" (click)="deleteAccount()">
+      <div class="setting-main">
+        <span class="icon-wrap danger">
+          <ion-icon name="trash-outline"></ion-icon>
+        </span>
+        <div class="setting-copy">
+          <strong>Delete Account</strong>
+          <small>Permanently remove your account</small>
+        </div>
+      </div>
+      <ion-icon class="chevron danger-chevron" name="chevron-forward-outline"></ion-icon>
+    </button>
+
+    <p class="footer-note">TasteTrack v2.4.0 - Made with care</p>
+  </div>
+</ion-content>

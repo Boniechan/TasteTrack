@@ -1,0 +1,57 @@
+﻿<ion-content class="favorites-page">
+  <div class="favorites-shell">
+    <header class="favorites-hero">
+      <button type="button" class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </button>
+
+      <div class="hero-copy">
+        <h1>My Favorites</h1>
+        <p>{{ favorites.length }} saved items</p>
+      </div>
+    </header>
+
+    <ng-container *ngIf="favorites.length; else emptyState">
+      <section class="favorites-list">
+        <article class="favorite-card" *ngFor="let favorite of favorites">
+          <div class="image-wrap">
+            <span class="badge">{{ favorite.badge }}</span>
+            <img [src]="favorite.image" [alt]="favorite.name" />
+          </div>
+
+          <div class="favorite-copy">
+            <h2>{{ favorite.name }}</h2>
+            <p class="restaurant">{{ favorite.restaurantName }}</p>
+
+            <div class="rating-row">
+              <ion-icon name="star"></ion-icon>
+              <span>{{ favorite.rating }}</span>
+              <small>({{ favorite.reviews }})</small>
+            </div>
+
+            <strong class="price">${{ favorite.price.toFixed(2) }}</strong>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="icon-action heart" (click)="removeFavorite(favorite.id)">
+              <ion-icon name="heart"></ion-icon>
+            </button>
+            <button type="button" class="icon-action cart" (click)="addToCart(favorite)">
+              <ion-icon name="cart-outline"></ion-icon>
+            </button>
+          </div>
+        </article>
+      </section>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <ion-icon name="heart-outline"></ion-icon>
+        <h2>No favorites yet</h2>
+        <p>Save a few dishes and they will show up here.</p>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>

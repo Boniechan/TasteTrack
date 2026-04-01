@@ -1,0 +1,173 @@
+﻿<ion-content class="payment-page">
+  <div class="payment-header">
+    <button type="button" class="back-button" (click)="goBack()" aria-label="Go back">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <h1>Payment</h1>
+  </div>
+
+  <div class="payment-shell" *ngIf="cart as currentCart">
+    <section class="amount-card">
+      <p>Total Amount</p>
+      <h2>${{ totalAmount.toFixed(2) }}</h2>
+      <small>{{ itemCount }} item{{ itemCount === 1 ? '' : 's' }} · {{ checkoutData.fulfillmentMode === 'pickup' ? 'Pickup fee included' : 'Delivery fee included' }}</small>
+    </section>
+
+    <section class="panel">
+      <h3>Payment Method</h3>
+
+      <button
+        type="button"
+        class="method-row"
+        [class.selected]="paymentMethod === 'card'"
+        (click)="selectPaymentMethod('card')"
+      >
+        <span class="method-icon card"><ion-icon name="card-outline"></ion-icon></span>
+        <span class="method-copy">
+          <strong>Credit / Debit Card</strong>
+          <small>Visa, Mastercard, Amex</small>
+        </span>
+        <ion-icon [name]="paymentMethod === 'card' ? 'checkmark-circle' : 'ellipse-outline'" class="state-icon"></ion-icon>
+      </button>
+
+      <button
+        type="button"
+        class="method-row"
+        [class.selected]="paymentMethod === 'wallet'"
+        (click)="selectPaymentMethod('wallet')"
+      >
+        <span class="method-icon wallet"><ion-icon name="wallet-outline"></ion-icon></span>
+        <span class="method-copy">
+          <strong>TasteWallet</strong>
+          <small>Balance: ${{ walletBalance.toFixed(2) }}</small>
+        </span>
+        <ion-icon [name]="paymentMethod === 'wallet' ? 'checkmark-circle' : 'ellipse-outline'" class="state-icon"></ion-icon>
+      </button>
+
+      <button
+        type="button"
+        class="method-row no-border"
+        [class.selected]="paymentMethod === 'cash'"
+        (click)="selectPaymentMethod('cash')"
+      >
+        <span class="method-icon cash"><ion-icon name="cash-outline"></ion-icon></span>
+        <span class="method-copy">
+          <strong>Cash on Delivery</strong>
+          <small>Pay when delivered</small>
+        </span>
+        <ion-icon [name]="paymentMethod === 'cash' ? 'checkmark-circle' : 'ellipse-outline'" class="state-icon"></ion-icon>
+      </button>
+    </section>
+
+    <section class="panel" *ngIf="paymentMethod === 'card'">
+      <h3>Saved Cards</h3>
+
+      <button
+        type="button"
+        *ngFor="let card of savedCards"
+        class="saved-card"
+        [class.selected]="selectedSavedCardId === card.id"
+        [class.visa]="card.accent === 'visa'"
+        [class.mastercard]="card.accent === 'mastercard'"
+        (click)="selectSavedCard(card.id)"
+      >
+        <span class="saved-logo">{{ card.brand }}</span>
+        <span class="saved-copy">
+          <strong>{{ card.masked }}</strong>
+          <small>Expires {{ card.expiry }}</small>
+        </span>
+        <ion-icon [name]="selectedSavedCardId === card.id ? 'checkmark-circle' : 'ellipse-outline'" class="state-icon"></ion-icon>
+      </button>
+
+      <div class="new-card-head">
+        <h4>New Card</h4>
+        <button type="button" class="text-link" (click)="clearSavedCardSelection()">Use New Card</button>
+      </div>
+
+      <div class="form-group">
+        <label>Card Number</label>
+        <input
+          type="text"
+          [value]="cardNumber"
+          (input)="formatCardNumber($event); clearSavedCardSelection()"
+          placeholder="1234 5678 9012 3456"
+          maxlength="19"
+          class="text-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Cardholder Name</label>
+        <input
+          type="text"
+          [(ngModel)]="cardName"
+          (focus)="clearSavedCardSelection()"
+          placeholder="John Doe"
+          class="text-input"
+        />
+      </div>
+
+      <div class="two-column">
+        <div class="form-group">
+          <label>Expiry (MM/YY)</label>
+          <input
+            type="text"
+            [value]="cardExpiry"
+            (input)="formatCardExpiry($event); clearSavedCardSelection()"
+            placeholder="12/27"
+            maxlength="5"
+            class="text-input"
+          />
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input
+            type="password"
+            [(ngModel)]="cardCvv"
+            (focus)="clearSavedCardSelection()"
+            placeholder="•••"
+            maxlength="4"
+            class="text-input"
+          />
+        </div>
+      </div>
+
+      <div class="security-note">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        SSL Encrypted · 100% Secure Payment
+      </div>
+    </section>
+
+    <section class="panel summary-panel">
+      <h3>Payment Summary</h3>
+      <div class="summary-row">
+        <span>{{ checkoutData.fulfillmentMode === 'pickup' ? 'Pickup' : checkoutData.addressLabel }}</span>
+        <strong>{{ checkoutData.deliveryTimeLabel }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>Address</span>
+        <strong>{{ checkoutData.addressLine }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong>${{ currentCart.subtotal.toFixed(2) }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>{{ checkoutData.fulfillmentMode === 'pickup' ? 'Pickup Fee' : 'Delivery Fee' }}</span>
+        <strong>${{ currentCart.deliveryFee.toFixed(2) }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>Tax</span>
+        <strong>${{ currentCart.tax.toFixed(2) }}</strong>
+      </div>
+    </section>
+  </div>
+
+  <div class="pay-bar" *ngIf="cart">
+    <button type="button" class="pay-button" [disabled]="!canSubmit" (click)="processPayment()">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      {{ isProcessing ? 'Processing Payment...' : ('Pay $' + totalAmount.toFixed(2) + ' Securely') }}
+      <ion-icon *ngIf="!isProcessing" name="chevron-forward"></ion-icon>
+    </button>
+  </div>
+</ion-content>

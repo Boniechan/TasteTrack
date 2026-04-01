@@ -1,0 +1,59 @@
+<ion-content class="food-detail-content" *ngIf="food">
+  <div class="food-image-container">
+    <img [src]="food.image" [alt]="food.name" class="food-image" />
+    <button class="back-btn" (click)="goBack()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button class="favorite-btn" (click)="toggleFavorite()">
+      <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+    </button>
+  </div>
+
+  <div class="food-details-container">
+    <div class="food-header">
+      <div>
+        <h1>{{ food.name }}</h1>
+        <div class="rating">
+          <span class="stars">★{{ food.rating }}</span>
+          <span class="count">({{ food.reviews }} reviews)</span>
+        </div>
+      </div>
+      <span class="price">${{ food.price.toFixed(2) }}</span>
+    </div>
+
+    <p class="description">{{ food.description }}</p>
+
+    <div class="food-tags">
+      <span class="tag" *ngIf="food.isVegetarian">🌱 Vegetarian</span>
+      <span class="tag spicy" *ngIf="food.isSpicy">🌶️ Spicy</span>
+      <span class="tag">⏱️ {{ food.prepTime }} min</span>
+    </div>
+
+    <div class="restaurant-info">
+      <h4>{{ food.restaurantName }}</h4>
+      <p>From {{ food.restaurantName }}</p>
+    </div>
+
+    <!-- Special Instructions -->
+    <div class="special-instructions">
+      <label>Special Instructions (optional)</label>
+      <textarea
+        [(ngModel)]="specialInstructions"
+        placeholder="Add any special requests..."
+        rows="3"
+      ></textarea>
+    </div>
+
+    <!-- Quantity Selector -->
+    <div class="quantity-selector">
+      <button (click)="decreaseQuantity()" [disabled]="quantity <= 1">−</button>
+      <span>{{ quantity }}</span>
+      <button (click)="increaseQuantity()">+</button>
+    </div>
+
+    <!-- Add to Cart Button -->
+    <button class="add-to-cart-btn" (click)="addToCart()">
+      Add to Cart - ${{ (food.price * quantity).toFixed(2) }}
+    </button>
+  </div>
+</ion-content>

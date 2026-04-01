@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar 
+      placeholder="Search food, restaurants..." 
+      [(ngModel)]="searchQuery"
+      (ionChange)="onSearch($event)"
+      animated="true">
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="toggleVoiceSearch()">
+        <ion-icon name="mic-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Recent Searches -->
+  <div *ngIf="!searchQuery" class="recent-searches">
+    <h3>Recent Searches</h3>
+    <div class="recent-items">
+      <ion-chip *ngFor="let item of recentSearches" (click)="searchQuery = item; onSearch({detail:{value:item}})">
+        <ion-icon name="history"></ion-icon>
+        <ion-label>{{ item }}</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <!-- Search Results -->
+  <div *ngIf="searchQuery && searchResults.length > 0" class="search-results">
+    <div class="results-section">
+      <h3>Restaurants</h3>
+      <div *ngFor="let restaurant of searchResults | slice:0:3" class="result-card">
+        <img [src]="restaurant.image" />
+        <div class="result-info">
+          <h4>{{ restaurant.name }}</h4>
+          <p>{{ restaurant.cuisine }}</p>
+          <div class="rating">
+            <ion-icon name="star-sharp" color="warning"></ion-icon>
+            <span>{{ restaurant.rating }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-section">
+      <h3>Food Items</h3>
+      <div *ngFor="let food of searchResults | slice:0:3" class="food-result">
+        <img [src]="food.image" />
+        <div>
+          <h4>{{ food.name }}</h4>
+          <p>{{ food.restaurant }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results -->
+  <div *ngIf="searchQuery && searchResults.length === 0" class="no-results">
+    <ion-icon name="search-outline"></ion-icon>
+    <p>No results found for "{{ searchQuery }}"</p>
+  </div>
+
+  <!-- Voice Search Indicator -->
+  <div *ngIf="voiceSearchActive" class="voice-search-indicator">
+    <div class="listening-animation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p>Listening...</p>
+  </div>
+</ion-content>

@@ -1,0 +1,144 @@
+<ion-content class="register-content">
+  <div class="register-header">
+    <div class="brand-mark">
+      <img src="assets/icon/tastetrack-logo.svg" alt="TasteTrack logo" />
+    </div>
+    <h1>Create Account</h1>
+    <p>Join TasteTrack and start ordering!</p>
+  </div>
+
+  <div class="register-form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label>Full Name</label>
+        <div class="input-wrapper">
+          <ion-icon name="person-outline" class="input-icon"></ion-icon>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="John Doe"
+            class="form-input"
+            autocomplete="name"
+          />
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <div class="input-wrapper">
+          <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="john@example.com"
+            class="form-input"
+            autocomplete="email"
+          />
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+          Email is required
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">
+          Please enter a valid email
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <div class="input-wrapper">
+          <ion-icon name="call-outline" class="input-icon"></ion-icon>
+          <input
+            formControlName="phone"
+            type="tel"
+            placeholder="+1 (555) 000-0000"
+            class="form-input"
+            autocomplete="tel"
+          />
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+          Phone number is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Min. 8 characters"
+            class="form-input"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility()"
+            aria-label="Toggle password visibility"
+          >
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+          </button>
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+          Password is required
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched">
+          Password must be at least 8 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <input
+            formControlName="confirmPassword"
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            placeholder="Re-enter password"
+            class="form-input"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="toggleConfirmPasswordVisibility()"
+            aria-label="Toggle confirm password visibility"
+          >
+            <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'"></ion-icon>
+          </button>
+        </div>
+        <div class="error-text" *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched">
+          Please confirm your password
+        </div>
+      </div>
+
+      <label class="terms-row">
+        <input type="checkbox" formControlName="acceptTerms" class="terms-checkbox" />
+        <span>
+          I agree to TasteTrack's
+          <button type="button" class="inline-link">Terms of Service</button>
+          and
+          <button type="button" class="inline-link">Privacy Policy</button>
+        </span>
+      </label>
+      <div class="error-text" *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched">
+        You must accept the terms to continue
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" [disabled]="isLoading" class="submit-btn">
+        {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+        <ion-icon *ngIf="!isLoading" name="sparkles-outline"></ion-icon>
+      </button>
+
+      <div class="login-link">
+        Already have an account? <button type="button" class="link-btn" (click)="goToLogin()">Sign In</button>
+      </div>
+    </form>
+  </div>
+</ion-content>

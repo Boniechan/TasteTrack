@@ -1,0 +1,132 @@
+﻿<ion-content class="checkout-page">
+  <div class="checkout-header">
+    <button type="button" class="back-button" (click)="goBack()" aria-label="Go back">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <h1>Checkout</h1>
+  </div>
+
+  <div class="checkout-shell" *ngIf="cart as currentCart">
+    <section class="toggle-panel">
+      <button
+        type="button"
+        class="mode-button"
+        [class.active]="fulfillmentMode === 'delivery'"
+        (click)="selectMode('delivery')"
+      >
+        <ion-icon name="bicycle-outline"></ion-icon>
+        Delivery
+      </button>
+      <button
+        type="button"
+        class="mode-button"
+        [class.active]="fulfillmentMode === 'pickup'"
+        (click)="selectMode('pickup')"
+      >
+        <ion-icon name="storefront-outline"></ion-icon>
+        Pickup
+      </button>
+    </section>
+
+    <section class="card" *ngIf="fulfillmentMode === 'delivery'">
+      <div class="section-head">
+        <div class="title-wrap">
+          <ion-icon name="location-outline"></ion-icon>
+          <h2>Delivery Address</h2>
+        </div>
+        <button type="button" class="link-button" (click)="openAddNew()">
+          <ion-icon name="add-outline"></ion-icon>
+          Add New
+        </button>
+      </div>
+
+      <div class="address-list">
+        <button
+          *ngFor="let address of deliveryAddresses"
+          type="button"
+          class="address-card"
+          [class.selected]="selectedAddressId === address.id"
+          (click)="selectAddress(address.id)"
+        >
+          <span class="address-icon">
+            <ion-icon [name]="address.icon"></ion-icon>
+          </span>
+          <span class="address-copy">
+            <strong>{{ address.label }}</strong>
+            <small>{{ address.street }}, {{ address.city }} {{ address.zipCode }}</small>
+          </span>
+          <ion-icon
+            class="selected-mark"
+            [name]="selectedAddressId === address.id ? 'checkmark-circle' : 'ellipse-outline'"
+          ></ion-icon>
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div class="title-wrap">
+          <ion-icon name="time-outline"></ion-icon>
+          <h2>{{ fulfillmentMode === 'pickup' ? 'Pickup Time' : 'Delivery Time' }}</h2>
+        </div>
+      </div>
+
+      <div class="slot-grid">
+        <button
+          *ngFor="let slot of deliverySlots"
+          type="button"
+          class="slot-card"
+          [class.selected]="selectedDeliveryTime === slot.id"
+          (click)="selectTime(slot.id)"
+        >
+          <ion-icon [name]="slot.icon"></ion-icon>
+          <strong>{{ slot.label }}</strong>
+          <small>{{ slot.subtitle }}</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="card compact-card">
+      <div class="section-head">
+        <div class="title-wrap">
+          <ion-icon name="cube-outline"></ion-icon>
+          <h2>Order Items ({{ itemCount }})</h2>
+        </div>
+      </div>
+
+      <div class="order-row" *ngFor="let item of currentCart.items">
+        <span class="qty-pill">×{{ item.quantity }}</span>
+        <span class="item-name">{{ item.name }}</span>
+        <strong>${{ (item.price * item.quantity).toFixed(2) }}</strong>
+      </div>
+    </section>
+
+    <section class="card totals-card">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <strong>${{ currentCart.subtotal.toFixed(2) }}</strong>
+      </div>
+      <div class="total-row">
+        <span>{{ fulfillmentMode === 'pickup' ? 'Pickup Fee' : 'Delivery Fee' }}</span>
+        <strong>${{ currentCart.deliveryFee.toFixed(2) }}</strong>
+      </div>
+      <div class="total-row">
+        <span>Tax (8%)</span>
+        <strong>${{ currentCart.tax.toFixed(2) }}</strong>
+      </div>
+      <div class="divider"></div>
+      <div class="total-row grand-total">
+        <span>Total</span>
+        <strong>${{ currentCart.total.toFixed(2) }}</strong>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-bar" *ngIf="cart as footerCart">
+    <button type="button" class="continue-button" [disabled]="!canContinue" (click)="goToPayment()">
+      <span>Choose Payment</span>
+      <span class="button-total">${{ footerCart.total.toFixed(2) }}</span>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
+</ion-content>

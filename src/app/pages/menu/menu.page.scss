@@ -1,0 +1,453 @@
+.menu-content {
+  --background: var(--tt-bg-secondary);
+  --padding-bottom: 96px;
+  padding: 0;
+}
+
+.menu-header {
+  padding: 18px 16px 22px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-copy {
+  .eyebrow {
+    margin: 0 0 2px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    color: white;
+  }
+}
+
+.back-btn,
+.filter-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  ion-icon {
+    font-size: 20px;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.back-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.28);
+  }
+}
+
+.filter-btn {
+  background-color: white;
+  color: var(--tt-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  background-color: white;
+  padding: 0 16px;
+  border-radius: 16px;
+
+  .search-icon {
+    color: var(--tt-primary);
+    font-size: 18px;
+  }
+
+  .search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--tt-text-primary);
+    font-family: 'Poppins', sans-serif;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--tt-text-light);
+    }
+  }
+}
+
+.sort-chips {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.sort-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  ion-icon {
+    font-size: 14px;
+  }
+
+  &.active {
+    border-color: transparent;
+    color: var(--tt-primary);
+    background: white;
+  }
+}
+
+.catalog-shell {
+  margin-top: -10px;
+  padding: 14px 0 0;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(180deg, #fff8f3 0%, var(--tt-bg-secondary) 140px);
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  background-color: white;
+  border: 1px solid #e9ddd2;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tt-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  .category-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  &.active {
+    background: var(--tt-gradient);
+    border-color: transparent;
+    color: white;
+  }
+}
+
+.tone-all { background: #ffb38e; }
+.tone-burgers { background: #d27b3d; }
+.tone-sushi { background: #7a62d6; }
+.tone-pizza { background: #f5a623; }
+.tone-pasta { background: #d6b26f; }
+.tone-desserts { background: #f57db1; }
+.tone-drinks { background: #4d96ff; }
+
+.results-count {
+  margin: 14px 16px 10px;
+  font-size: 14px;
+  color: var(--tt-text-secondary);
+}
+
+.foods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 16px 8px;
+}
+
+.food-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(50, 36, 24, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(50, 36, 24, 0.12);
+  }
+
+  .food-image-wrapper {
+    position: relative;
+    aspect-ratio: 1.16 / 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #ffe4d2 0%, #ffc7a6 100%);
+  }
+
+  .favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.96);
+    color: #d95d79;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+
+  .badge-hot {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff934f 0%, #ff5b2e 100%);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .food-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 12px 14px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+      color: var(--tt-text-primary);
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .restaurant {
+      margin: 0;
+      font-size: 12px;
+      color: var(--tt-text-secondary);
+    }
+
+    .food-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      font-size: 12px;
+
+      .rating,
+      .prep-time {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--tt-text-secondary);
+
+        ion-icon {
+          font-size: 13px;
+        }
+      }
+
+      .rating {
+        color: #c98900;
+      }
+
+      .meta-muted {
+        color: var(--tt-text-light);
+      }
+    }
+
+    .food-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .price-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .price {
+        font-size: 28px;
+        line-height: 1;
+        font-weight: 800;
+        color: var(--tt-primary);
+      }
+
+      .price-compare {
+        font-size: 12px;
+        color: var(--tt-text-light);
+        text-decoration: line-through;
+      }
+    }
+
+    .add-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 12px;
+      background: var(--tt-gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(255, 107, 53, 0.24);
+      cursor: pointer;
+
+      ion-icon {
+        font-size: 20px;
+      }
+
+      &.added {
+        background: linear-gradient(135deg, #2ed573 0%, #15b76a 100%);
+      }
+    }
+  }
+}
+
+.no-results {
+  padding: 60px 20px 120px;
+  text-align: center;
+
+  ion-icon {
+    font-size: 42px;
+    color: var(--tt-primary);
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: var(--tt-text-primary);
+  }
+
+  p {
+    margin: 0;
+    color: var(--tt-text-secondary);
+  }
+}
+
+.floating-cart-btn {
+  position: fixed;
+  bottom: 104px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: var(--tt-gradient);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  ion-icon {
+    font-size: 26px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 360px) {
+  .foods-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .title-copy h1 {
+    font-size: 28px;
+  }
+}

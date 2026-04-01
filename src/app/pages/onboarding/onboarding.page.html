@@ -1,0 +1,59 @@
+<ion-content class="onboarding-content">
+  <div class="onboarding-container">
+    <!-- Skip Button -->
+    <button class="skip-btn" (click)="skip()">Skip</button>
+
+    <!-- Slides -->
+    <div class="slides-wrapper">
+      <div class="slide" [class.active]="currentSlide === 0">
+        <div class="slide-content">
+          <div class="slide-icon">
+            <ion-icon name="restaurant"></ion-icon>
+          </div>
+          <h2>Discover Amazing Food</h2>
+          <p>Explore hundreds of restaurants and cuisines right at your fingertips</p>
+        </div>
+      </div>
+
+      <div class="slide" [class.active]="currentSlide === 1">
+        <div class="slide-content">
+          <div class="slide-icon">
+            <ion-icon name="flash"></ion-icon>
+          </div>
+          <h2>Fast & Easy Ordering</h2>
+          <p>Order your favorite meals in seconds with our simple and intuitive interface</p>
+        </div>
+      </div>
+
+      <div class="slide" [class.active]="currentSlide === 2">
+        <div class="slide-content">
+          <div class="slide-icon">
+            <ion-icon name="pin"></ion-icon>
+          </div>
+          <h2>Real-Time Tracking</h2>
+          <p>Track your order live from the kitchen to your doorstep</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicators -->
+    <div class="indicators">
+      <button
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="currentSlide === i"
+        (click)="goToSlide(i)"
+        class="indicator"
+      ></button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+      <button (click)="previousSlide()" [disabled]="currentSlide === 0" class="nav-btn">
+        ←
+      </button>
+      <button (click)="nextSlide()" class="nav-btn next">
+        {{ currentSlide === slides.length - 1 ? 'Get Started →' : 'Next →' }}
+      </button>
+    </div>
+  </div>
+</ion-content>

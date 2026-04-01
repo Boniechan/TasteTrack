@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" color="light" (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="notifications.length > 0; else emptyState" class="notifications-list">
+    <div *ngFor="let notification of notifications" class="notification-card" [class.unread]="!notification.read">
+      <ion-icon [name]="notification.icon" color="primary"></ion-icon>
+      <div class="notification-content">
+        <h3>{{ notification.title }}</h3>
+        <p>{{ notification.message }}</p>
+        <p class="timestamp">{{ notification.timestamp }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <ion-icon name="notifications-off-outline"></ion-icon>
+      <p>No notifications</p>
+    </div>
+  </ng-template>
+</ion-content>

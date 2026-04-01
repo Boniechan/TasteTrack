@@ -1,0 +1,110 @@
+<ion-content class="cart-content">
+  <div class="cart-header gradient-primary">
+    <div class="header-top">
+      <button class="back-btn" (click)="goBack()" aria-label="Go back">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <h1>My Cart</h1>
+      <button class="clear-btn" (click)="clearCart()" *ngIf="cart && cart.items.length > 0">
+        Clear All
+      </button>
+    </div>
+  </div>
+
+  <div class="cart-wrapper" *ngIf="cart && cart.items.length > 0; else emptyCart">
+    <div class="cart-items-list">
+      <article *ngFor="let item of cart.items" class="cart-item">
+        <img
+          [src]="item.image"
+          [alt]="item.name"
+          class="item-image"
+          (error)="handleImageError($event, item.name)"
+        />
+        <div class="item-body">
+          <div class="item-main">
+            <div class="item-details">
+              <h3>{{ item.name }}</h3>
+              <p class="restaurant">{{ getRestaurantName(item.restaurantId) }}</p>
+              <p class="price">${{ getItemTotal(item.price, item.quantity).toFixed(2) }}</p>
+            </div>
+            <button class="delete-btn" (click)="removeItem(item.id)" aria-label="Remove item">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </div>
+          <div class="item-controls">
+            <button class="qty-btn" (click)="updateQuantity(item.id, item.quantity - 1)" aria-label="Decrease quantity">
+              -
+            </button>
+            <span class="qty-display">{{ item.quantity }}</span>
+            <button class="qty-btn qty-btn-plus" (click)="updateQuantity(item.id, item.quantity + 1)" aria-label="Increase quantity">
+              +
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="promo-section">
+      <div class="section-title">
+        <ion-icon name="ticket-outline"></ion-icon>
+        <h3>Promo Code</h3>
+      </div>
+      <div class="promo-input-wrapper">
+        <input
+          [(ngModel)]="promoCode"
+          type="text"
+          placeholder="Enter promo code"
+          class="promo-input-field"
+        />
+        <button (click)="applyPromo()" class="apply-btn">Apply</button>
+      </div>
+      <div class="promo-success" *ngIf="promoApplied">Promo code applied.</div>
+    </div>
+
+    <div class="summary-section">
+      <div class="section-title">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <h3>Order Summary</h3>
+      </div>
+      <div class="summary-rows">
+        <div class="summary-row">
+          <span class="label">Subtotal</span>
+          <span class="value">${{ cart.subtotal.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Delivery Fee</span>
+          <span class="value">${{ cart.deliveryFee.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Tax (8%)</span>
+          <span class="value">${{ cart.tax.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row discount-row" *ngIf="cart.discount > 0">
+          <span class="label">Discount</span>
+          <span class="value">-${{ cart.discount.toFixed(2) }}</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span class="label">Total</span>
+          <span class="value">${{ cart.total.toFixed(2) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="checkout-btn" (click)="goToCheckout()">
+      <span>Proceed to Checkout</span>
+      <span class="checkout-total">${{ cart.total.toFixed(2) }}</span>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <ion-icon class="empty-icon" name="cart-outline"></ion-icon>
+      <h2>Your Cart is Empty</h2>
+      <p>Add some delicious items to get started!</p>
+      <button class="browse-btn" (click)="goBack()">Browse Menu</button>
+    </div>
+  </ng-template>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>

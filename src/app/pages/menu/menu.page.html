@@ -1,0 +1,121 @@
+<ion-content class="menu-content">
+  <div class="menu-header gradient-primary">
+    <div class="header-top">
+      <div class="title-group">
+        <button class="back-btn" (click)="goBack()" aria-label="Go back">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <div class="title-copy">
+          <p class="eyebrow">Discover</p>
+          <h1>Explore Menu</h1>
+        </div>
+      </div>
+
+      <button class="filter-btn" (click)="resetFilters()" aria-label="Reset filters">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </div>
+
+    <div class="search-bar">
+      <ion-icon class="search-icon" name="search"></ion-icon>
+      <input
+        type="text"
+        placeholder="Search food or restaurant..."
+        [(ngModel)]="searchQuery"
+        (input)="filterFoods()"
+        class="search-input"
+      />
+    </div>
+
+    <div class="sort-chips">
+      <button
+        *ngFor="let option of sortOptions"
+        class="sort-chip"
+        [class.active]="selectedSort === option.id"
+        (click)="selectSort(option.id)"
+      >
+        <ion-icon [name]="option.icon"></ion-icon>
+        <span>{{ option.label }}</span>
+      </button>
+    </div>
+  </div>
+
+  <section class="catalog-shell">
+    <div class="categories">
+      <button
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        (click)="selectCategory(category)"
+        class="category-btn"
+      >
+        <span class="category-dot" [ngClass]="getCategoryTone(category)"></span>
+        <span>{{ category }}</span>
+      </button>
+    </div>
+
+    <p class="results-count">{{ filteredFoods.length }} items found</p>
+
+    <div *ngIf="filteredFoods.length > 0; else noResults" class="foods-grid">
+      <article *ngFor="let food of filteredFoods" class="food-card">
+        <div class="food-image-wrapper" (click)="goToFoodDetail(food.id)">
+          <img
+            [src]="food.image"
+            [alt]="food.name"
+            class="food-image"
+            (error)="handleImageError($event, food.name)"
+          />
+          <button class="favorite-btn" (click)="toggleFavorite($event, food.id)" aria-label="Toggle favorite">
+            <ion-icon [name]="isFavorited(food.id) ? 'heart' : 'heart-outline'"></ion-icon>
+          </button>
+          <span class="badge-hot" *ngIf="isPopular(food.id)">Hot</span>
+        </div>
+
+        <div class="food-details">
+          <h3>{{ food.name }}</h3>
+          <p class="restaurant">{{ food.restaurantName }}</p>
+
+          <div class="food-meta">
+            <span class="rating">
+              <ion-icon name="star"></ion-icon>
+              {{ food.rating }}
+              <span class="meta-muted">({{ food.reviews }})</span>
+            </span>
+            <span class="prep-time">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ food.prepTime }}-{{ food.prepTime + 5 }} min
+            </span>
+          </div>
+
+          <div class="food-footer">
+            <div class="price-group">
+              <span class="price">${{ food.price.toFixed(2) }}</span>
+              <span class="price-compare">${{ getComparePrice(food).toFixed(2) }}</span>
+            </div>
+
+            <button
+              class="add-btn"
+              [class.added]="recentlyAddedId === food.id"
+              (click)="addToCart(food, $event)"
+              aria-label="Add to cart"
+            >
+              <ion-icon [name]="recentlyAddedId === food.id ? 'checkmark' : 'add'"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <ng-template #noResults>
+    <div class="no-results">
+      <ion-icon name="search"></ion-icon>
+      <h3>No items found</h3>
+      <p>Try adjusting your search or filters.</p>
+    </div>
+  </ng-template>
+
+  <button class="floating-cart-btn" (click)="goToCart()" aria-label="Open cart">
+    <ion-icon name="cart"></ion-icon>
+  </button>
+</ion-content>
+<app-bottom-nav></app-bottom-nav>
