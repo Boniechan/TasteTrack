@@ -1,0 +1,259 @@
+/*
+ * TasteTrack - Food Ordering & Payment Management System
+ * Global Styles & Theme
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+/* TasteTrack Theme Variables */
+:root {
+  --tt-primary: #FF6B35;
+  --tt-primary-light: #FF8C5A;
+  --tt-primary-dark: #E55100;
+  --tt-secondary: #F7931E;
+  --tt-accent: #4D96FF;
+  --tt-success: #2ED573;
+  --tt-warning: #FFA502;
+  --tt-danger: #FF6B6B;
+  
+  --tt-text-primary: #2C2C2C;
+  --tt-text-secondary: #757575;
+  --tt-text-light: #BDBDBD;
+  
+  --tt-bg-primary: #FFFFFF;
+  --tt-bg-secondary: #F5F5F5;
+  --tt-bg-tertiary: #EEEEEE;
+  
+  --tt-border: #E0E0E0;
+  --tt-shadow: rgba(0, 0, 0, 0.1);
+  
+  --tt-gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  --tt-gradient-vertical: linear-gradient(180deg, #FF6B35 0%, #F7931E 100%);
+}
+
+/* Global Typography */
+* {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--tt-text-primary);
+  background-color: var(--tt-bg-primary);
+}
+
+html.dark, body.dark {
+  --tt-text-primary: #FFFFFF;
+  --tt-text-secondary: #B0B0B0;
+  --tt-text-light: #757575;
+  --tt-bg-primary: #1A1A1A;
+  --tt-bg-secondary: #2E2E2E;
+  --tt-bg-tertiary: #3E3E3E;
+  --tt-border: #404040;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--tt-text-primary);
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+/* Buttons */
+ion-button {
+  --border-radius: 12px;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+ion-button.tt-primary {
+  --background: var(--tt-primary);
+  --color: white;
+  
+  &:hover {
+    --background: var(--tt-primary-dark);
+  }
+}
+
+ion-button.tt-secondary {
+  --background: var(--tt-secondary);
+  --color: white;
+}
+
+ion-button.tt-outline {
+  --border-color: var(--tt-primary);
+  --color: var(--tt-primary);
+  border: 2px solid var(--tt-primary);
+}
+
+/* Cards */
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--tt-shadow);
+  background: var(--tt-bg-primary);
+  border: 1px solid var(--tt-border);
+}
+
+/* Input Fields */
+ion-input, ion-textarea {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  
+  &::placeholder {
+    color: var(--tt-text-light);
+  }
+}
+
+ion-item {
+  --background: var(--tt-bg-primary);
+  --color: var(--tt-text-primary);
+  --border-color: var(--tt-border);
+}
+
+/* Utility Classes */
+.gradient-primary {
+  background: var(--tt-gradient);
+  color: white;
+}
+
+.gradient-primary-text {
+  background: var(--tt-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-primary { color: var(--tt-primary); }
+.text-secondary { color: var(--tt-text-secondary); }
+.text-light { color: var(--tt-text-light); }
+
+.bg-primary { background-color: var(--tt-bg-primary); }
+.bg-secondary { background-color: var(--tt-bg-secondary); }
+.bg-gradient { background: var(--tt-gradient); }
+
+.rounded-lg { border-radius: 12px; }
+.rounded-xl { border-radius: 16px; }
+.rounded-full { border-radius: 9999px; }
+
+.shadow-md { box-shadow: 0 4px 12px var(--tt-shadow); }
+.shadow-lg { box-shadow: 0 8px 24px var(--tt-shadow); }
+
+.gap-1 { gap: 8px; }
+.gap-2 { gap: 12px; }
+.gap-3 { gap: 16px; }
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Badge & Chips */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--tt-bg-secondary);
+  color: var(--tt-text-primary);
+  
+  &.badge-primary {
+    background-color: var(--tt-primary);
+    color: white;
+  }
+  
+  &.badge-success {
+    background-color: var(--tt-success);
+    color: white;
+  }
+}
+
+/* Rating */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  
+  .star {
+    color: #FFC93C;
+    font-size: 14px;
+  }
+  
+  .count {
+    font-size: 12px;
+    color: var(--tt-text-secondary);
+    margin-left: 4px;
+  }
+}

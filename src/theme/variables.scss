@@ -1,0 +1,124 @@
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+
+// TasteTrack Theme Variables
+:root {
+  /**
+   * Primary Colors
+   */
+  --ion-color-primary: #FF6B35;
+  --ion-color-primary-rgb: 255, 107, 53;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #E55100;
+  --ion-color-primary-tint: #FF8C5A;
+
+  /**
+   * Secondary Colors
+   */
+  --ion-color-secondary: #F7931E;
+  --ion-color-secondary-rgb: 247, 147, 30;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #DAA01A;
+  --ion-color-secondary-tint: #F89D35;
+
+  /**
+   * Accent Colors
+   */
+  --ion-color-accent: #4D96FF;
+  --ion-color-accent-rgb: 77, 150, 255;
+  --ion-color-accent-contrast: #ffffff;
+  --ion-color-accent-contrast-rgb: 255, 255, 255;
+  --ion-color-accent-shade: #3A7FE0;
+  --ion-color-accent-tint: #5FA1FF;
+
+  /**
+   * Status Colors
+   */
+  --ion-color-success: #2ED573;
+  --ion-color-success-rgb: 46, 213, 115;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #29BA65;
+  --ion-color-success-tint: #45DA83;
+
+  --ion-color-warning: #FFA502;
+  --ion-color-warning-rgb: 255, 165, 2;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade: #E59402;
+  --ion-color-warning-tint: #FFB31B;
+
+  --ion-color-danger: #FF6B6B;
+  --ion-color-danger-rgb: 255, 107, 107;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #E55555;
+  --ion-color-danger-tint: #FF7A7A;
+
+  --ion-color-light: #F5F5F5;
+  --ion-color-light-rgb: 245, 245, 245;
+  --ion-color-light-contrast: #2C2C2C;
+  --ion-color-light-contrast-rgb: 44, 44, 44;
+  --ion-color-light-shade: #D9D9D9;
+  --ion-color-light-tint: #F6F6F6;
+
+  --ion-color-medium: #909090;
+  --ion-color-medium-rgb: 144, 144, 144;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #7E7E7E;
+  --ion-color-medium-tint: #9A9A9A;
+
+  --ion-color-dark: #2C2C2C;
+  --ion-color-dark-rgb: 44, 44, 44;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #262626;
+  --ion-color-dark-tint: #414141;
+
+  /**
+   * Body Colors
+   */
+  --ion-background-color: #FFFFFF;
+  --ion-background-color-rgb: 255, 255, 255;
+
+  --ion-text-color: #2C2C2C;
+  --ion-text-color-rgb: 44, 44, 44;
+
+  --ion-border-color: #E0E0E0;
+
+  /**
+   * Step Indicators
+   */
+  --ion-step-indicator-color: #FF6B35;
+  --ion-step-indicator-color-active: #FF6B35;
+  --ion-step-indicator-color-done: #2ED573;
+}
+
+/**
+ * Dark Mode
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #1A1A1A;
+    --ion-background-color-rgb: 26, 26, 26;
+
+    --ion-text-color: #FFFFFF;
+    --ion-text-color-rgb: 255, 255, 255;
+
+    --ion-border-color: #404040;
+  }
+}
+
+/**
+ * iOS only styles
+ */
+@supports selector(::-webkit-scrollbar) {
+  ion-content::part(scroll) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ion-color-primary) var(--ion-background-color);
+  }
+}
+
