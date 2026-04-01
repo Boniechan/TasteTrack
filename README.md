@@ -217,9 +217,4 @@ ionic cap build android
 Proprietary - TasteTrack 2024
 
 ## Support
-
-For issues or feature requests, contact support@tastetrack.com
-
----
-
-**Created with ❤️ for food delivery excellence**
+Marvin
