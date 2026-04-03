@@ -38,6 +38,27 @@ export class UserService {
     this.loadAddresses();
   }
 
+  private createStaticUser(overrides: Partial<User> = {}): User {
+    return {
+      id: 'static-user',
+      email: 'guest@tastetrack.app',
+      name: 'TasteTrack Guest',
+      phone: '+1 (555) 234-5678',
+      memberType: 'gold',
+      tastePoints: 1250,
+      joinDate: new Date('2024-01-15'),
+      darkMode: false,
+      ...overrides
+    };
+  }
+
+  private restoreStaticUser(overrides: Partial<User> = {}): void {
+    const user = this.createStaticUser(overrides);
+    this.userSubject.next(user);
+    this.saveUser();
+    this.applyDarkMode(user.darkMode);
+  }
+
   private loadUser(): void {
     const saved = localStorage.getItem('tastetrack_user');
     if (saved) {
@@ -70,35 +91,29 @@ export class UserService {
   }
 
   login(email: string, password: string): boolean {
-    // Simulate login
-    const user: User = {
-      id: 'user_' + Date.now(),
-      email,
-      name: email.split('@')[0],
-      phone: '+1 (555) 234-5678',
-      memberType: 'gold',
-      tastePoints: 1250,
-      joinDate: new Date('2024-01-15'),
-      darkMode: false
-    };
-    this.userSubject.next(user);
-    this.saveUser();
+    const trimmedEmail = email?.trim();
+    const currentUser = this.userSubject.value;
+
+    this.restoreStaticUser({
+      email: trimmedEmail || currentUser?.email || 'guest@tastetrack.app',
+      name: trimmedEmail ? trimmedEmail.split('@')[0] : currentUser?.name || 'TasteTrack Guest',
+      phone: currentUser?.phone || '+1 (555) 234-5678',
+      darkMode: currentUser?.darkMode ?? false
+    });
+
     return true;
   }
 
   register(email: string, password: string, name: string, phone = ''): boolean {
-    const user: User = {
-      id: 'user_' + Date.now(),
-      email,
-      name,
-      phone,
-      memberType: 'standard',
-      tastePoints: 0,
-      joinDate: new Date(),
-      darkMode: false
-    };
-    this.userSubject.next(user);
-    this.saveUser();
+    const currentUser = this.userSubject.value;
+
+    this.restoreStaticUser({
+      email: email?.trim() || currentUser?.email || 'guest@tastetrack.app',
+      name: name?.trim() || currentUser?.name || 'TasteTrack Guest',
+      phone: phone?.trim() || currentUser?.phone || '+1 (555) 234-5678',
+      darkMode: currentUser?.darkMode ?? false
+    });
+
     return true;
   }
 

@@ -15,7 +15,7 @@ export class SplashPage implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/onboarding']);
+      this.router.navigate(['/onboarding'], { replaceUrl: true });
     }, 3000);
   }
 }

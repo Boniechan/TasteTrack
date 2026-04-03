@@ -113,7 +113,7 @@ export class ProfilePage implements OnInit {
 
   logout(): void {
     this.userService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
 
   private syncProfile(): void {

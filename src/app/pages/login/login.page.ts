@@ -57,24 +57,14 @@ export class LoginPage {
 
   login(): void {
     this.errorMessage = '';
-
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      this.errorMessage = 'Please fill in all fields correctly';
-      return;
-    }
-
     this.isLoading = true;
     const { email, password } = this.loginForm.value;
 
     setTimeout(() => {
-      if (this.userService.login(email, password)) {
-        this.router.navigate(['/home']);
-      } else {
-        this.errorMessage = 'Invalid email or password';
-      }
+      this.userService.login(email, password);
+      this.router.navigate(['/home'], { replaceUrl: true });
       this.isLoading = false;
-    }, 1000);
+    }, 400);
   }
 
   forgotPassword(): void {
@@ -82,33 +72,33 @@ export class LoginPage {
   }
 
   goToRegister(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/register'], { replaceUrl: true });
   }
 
   loginWithGoogle(): void {
     this.isLoading = true;
     setTimeout(() => {
       this.userService.login('user@gmail.com', 'password');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'], { replaceUrl: true });
       this.isLoading = false;
-    }, 1000);
+    }, 400);
   }
 
   loginWithApple(): void {
     this.isLoading = true;
     setTimeout(() => {
       this.userService.login('user@icloud.com', 'password');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'], { replaceUrl: true });
       this.isLoading = false;
-    }, 1000);
+    }, 400);
   }
 
   loginWithFacebook(): void {
     this.isLoading = true;
     setTimeout(() => {
       this.userService.login('user@facebook.com', 'password');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'], { replaceUrl: true });
       this.isLoading = false;
-    }, 1000);
+    }, 400);
   }
 }

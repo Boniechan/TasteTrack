@@ -66,33 +66,17 @@ export class RegisterPage {
 
   register(): void {
     this.errorMessage = '';
-
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
-      this.errorMessage = 'Please fill in all fields correctly';
-      return;
-    }
-
-    if (this.registerForm.get('password')?.value !== this.registerForm.get('confirmPassword')?.value) {
-      this.registerForm.get('confirmPassword')?.markAsTouched();
-      this.errorMessage = 'Passwords do not match';
-      return;
-    }
-
     this.isLoading = true;
     const { email, password, name, phone } = this.registerForm.value;
 
     setTimeout(() => {
-      if (this.userService.register(email, password, name, phone)) {
-        this.router.navigate(['/home']);
-      } else {
-        this.errorMessage = 'Registration failed. Try again.';
-      }
+      this.userService.register(email, password, name, phone);
+      this.router.navigate(['/home'], { replaceUrl: true });
       this.isLoading = false;
-    }, 1000);
+    }, 400);
   }
 
   goToLogin(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
 }

@@ -148,7 +148,7 @@ export class SettingsPage implements OnInit {
     if (confirm('Delete your account permanently? This cannot be undone.')) {
       localStorage.removeItem(this.storageKey);
       this.userService.logout();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { replaceUrl: true });
     }
   }
 
